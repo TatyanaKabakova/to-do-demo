@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for to_do in todo_list %}
+    <div><p><a href="{{ url_for('task_list_or_create.task_list_or_create', todo_id=to_do.id) }}">{{ to_do.title }}</a></p></div>
+
+    {% endfor %}
+
+    <h1>Add new ToDo</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=64) }}<br>
+            {% for error in form.title.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+{% endblock %}

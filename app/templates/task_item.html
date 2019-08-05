@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <p><a href="{{ url_for('todo_list_or_create.todo_list_or_create') }}">Back to ToDo List</a></p>
+    <p><a href="{{ url_for('task_list_or_create.task_list_or_create', todo_id=todo_item.id) }}">{{ todo_item.title }}</a>
+
+    <h1>Edit Task</h1>
+    <form action="{{ url_for('task_edit.task_edit', task_id=task.id) }}" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.body.label }}<br>
+            {{ form.body(size=256) }}<br>
+            {% for error in form.body.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.is_finished.label }}<br>
+            {{ form.is_finished }}<br>
+            {% for error in form.is_finished.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <p><a href="{{ url_for('task_delete.task_delete', task_id=task.id) }}">DELETE Task</a></p>
+
+
+{% endblock %}

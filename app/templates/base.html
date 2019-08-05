@@ -1,0 +1,12 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - To Do List</title>
+        {% else %}
+        <title>To Do List</title>
+        {% endif %}
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
