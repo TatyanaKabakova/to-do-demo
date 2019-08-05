@@ -30,7 +30,6 @@ def task_delete(task_id):
 
 @task_item.route('/<todo_id>', methods=['POST', ])
 def task_create(todo_id):
-    print("HERE")
     task_form = TaskForm()
     if task_form.validate_on_submit():
         task_object = Task(body=task_form.body.data, todo_list_id=todo_id)
