@@ -3,7 +3,7 @@
 {% block content %}
 
     {% for to_do in todo_list %}
-    <div><p><a href="{{ url_for('task_list_or_create.task_list_or_create', todo_id=to_do.id) }}">{{ to_do.title }}</a></p></div>
+    <div><p><a href="{{ url_for('todo.task_list', todo_id=to_do.id) }}">{{ to_do.title }}</a></p></div>
 
     {% endfor %}
 

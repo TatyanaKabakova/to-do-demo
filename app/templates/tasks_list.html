@@ -2,22 +2,22 @@
 
 {% block content %}
 
-    <p><a href="{{ url_for('todo_list_or_create.todo_list_or_create') }}">Back to ToDo List</a></p>
+    <p><a href="{{ url_for('todo.todo_list_or_create') }}">Back to ToDo List</a></p>
     <div><p>{{ todo_item.title }}</p></div>
 
     {% for task in tasks %}
     <div>
         {% if task.is_finished %}
-            <p><a href="{{ url_for('task_edit.task_edit', task_id=task.id) }}" style="text-decoration: line-through;">{{ task.body }}</a></p>
+            <p><a href="{{ url_for('task.task_edit', task_id=task.id) }}" style="text-decoration: line-through;">{{ task.body }}</a></p>
         {% else %}
-            <p><a href="{{ url_for('task_edit.task_edit', task_id=task.id) }}">{{ task.body }}</a></p>
+            <p><a href="{{ url_for('task.task_edit', task_id=task.id) }}">{{ task.body }}</a></p>
         {% endif %}
 
     </div>
     {% endfor %}
 
     <h1>Add new Task to the ToDo</h1>
-    <form action="{{ url_for('task_list_or_create.task_list_or_create', todo_id=todo_item.id) }}" method="post" novalidate>
+    <form action="{{ url_for('task.task_create', todo_id=todo_item.id) }}" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
             {{ form.body.label }}<br>

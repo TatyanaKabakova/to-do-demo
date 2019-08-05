@@ -9,15 +9,11 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from .views.todo_list_or_create import todo_list_create
-from .views.task_list_or_create import task_list_create
-from .views.task_delete import task_item_delete
-from .views.task_edit import task_item_edit
+from .views.todo import todo_item
+from .views.task import task_item
 
-app.register_blueprint(todo_list_create)
-app.register_blueprint(task_list_create)
-app.register_blueprint(task_item_delete)
-app.register_blueprint(task_item_edit)
+app.register_blueprint(todo_item, url_prefix='/todo/')
+app.register_blueprint(task_item, url_prefix='/task/')
 
 from app import models
 
